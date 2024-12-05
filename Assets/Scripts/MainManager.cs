@@ -11,6 +11,7 @@ public class MainManager : MonoBehaviour
     public Rigidbody Ball;
 
     public Text ScoreText;
+    public Text HighScoreText;
     public GameObject GameOverText;
     
     private bool m_Started = false;
@@ -72,5 +73,12 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+        DataManager.instance.UpdateScore(m_Points);
+        HighScoreText.text = $"Best Scrore: {DataManager.scoreTable[0]}: {DataManager.scoreTable[1]}";
+    }
+
+    public void ExitToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
